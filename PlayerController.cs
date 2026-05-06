@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // 🔍 Cek apakah menyentuh tanah
+        
         if (groundCheck != null)
         {
             isGrounded = Physics2D.OverlapCircle(
@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
             );
         }
 
-        // 🎮 Input kiri kanan
         if (Keyboard.current != null)
         {
             if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
@@ -50,7 +49,7 @@ public class PlayerController : MonoBehaviour
                 moveInput = 0;
         }
 
-        // 🔄 Flip karakter TANPA ubah ukuran
+       
         if (moveInput > 0)
         {
             transform.localScale = new Vector3(
@@ -68,23 +67,23 @@ public class PlayerController : MonoBehaviour
             );
         }
 
-        // 🚀 Lompat (SUDAH BENAR)
+       
         if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
 
-        // 🔍 Debug (opsional)
+    
         Debug.Log("Grounded: " + isGrounded);
     }
 
     void FixedUpdate()
     {
-        // 🏃 Gerakan kiri kanan
+        
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
     }
 
-    // 🟡 Visual groundCheck di Scene
+    
     void OnDrawGizmosSelected()
     {
         if (groundCheck != null)

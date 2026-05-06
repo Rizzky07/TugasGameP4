@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class NPC_Patrol : MonoBehaviour
 {
-    // GANTI Transform[] MENJADI Vector2[] agar bisa isi angka di Inspector
-    public Vector2[] patrolPoints;
+    
     public float speed = 2f;
     public float pauseDuration = 1.5f;
 
@@ -22,7 +21,7 @@ public class NPC_Patrol : MonoBehaviour
 
         if (patrolPoints.Length > 0)
         {
-            // Karena sudah Vector2, tidak perlu .position lagi
+           
             target = patrolPoints[currentPatrolIndex];
         }
     }
@@ -38,7 +37,7 @@ public class NPC_Patrol : MonoBehaviour
         Vector2 direction = (target - (Vector2)transform.position).normalized;
         rb.linearVelocity = direction * speed;
 
-        // 🔄 Flip Sprite
+    
         if (rb.linearVelocity.x > 0.1f)
         {
             transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
@@ -48,7 +47,7 @@ public class NPC_Patrol : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
         }
 
-        // Cek jarak ke target
+   
         if (Vector2.Distance(transform.position, target) < 0.2f)
         {
             if (!isPaused) StartCoroutine(SetPatrolPoint());
